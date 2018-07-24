@@ -8,5 +8,6 @@ public class SdmsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SdmsApplication.class, args);
+		System.out.println("Application Started");
 	}
 }
