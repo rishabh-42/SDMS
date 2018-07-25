@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 
  @RequestMapping("/getPlacementReport")
-    @ResponseBody
+ @ResponseBody
 public ModelAndView getPlacementReport ()
 {
     ModelAndView m = new ModelAndView("batchAssignment");
