@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SCGJ-Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/ScgjDashboard.css" th:href="@{/ScgjDashboard.css}" >
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="../static/ScgjDasboard.js" th:src="@{/ScgjDasboard.js}"></script>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+        <div class="row" id="header">
+            <div class="col-md-4" style="padding: 20px 20px 20px 0px">
+                <img src="img/SCGJLogo.png" width="100%">
+            </div>
+            <div class="col-md-5" style="padding: 40px 20px 20px 20px ">
+                <div class="row">
+                    <div class="col-md-6" style="padding: 0px 0px 0px 0px">
+                        <div id="mycarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="img/t1.png">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="img/t2.png">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="img/t3.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="padding: 0px 0px 0px 0px" >
+                        <div id="carouselExampleSlidesOnly1" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="img/t2.png">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="img/t3.png">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="img/t1.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" style="padding: 20px 0px 20px 20px">
+                <div class="row" style="margin: 5px">
+                    <div class="col-md-4"><img src="img/skill-india.png" width="100%"></div>
+                    <div class="col-md-8"><img src="img/nsdc.png" width="100%"></div>
+                </div>
+            </div>
+
+
+        </div>                                       <!--header ends here-->
+
+
+
+
+
+
+
+</div>
+
+
+    <div class="row" id="maindashboard"  >
+        <div class="col-md-2" id="navbar">
+            <p><a href="html_images.asp" >Dashboard</a></p>
+            <p><a href="html_images.asp" >Manage Registeration</a></p>
+            <p><a href="html_images.asp" >Import</a></p>
+            <p><a href="html_images.asp" >FAQ</a></p>
+            <p><a href="html_images.asp" >Batch Assignment</a></p>
+            <p><a href="html_images.asp" >Placement Report</a></p>
+
+        </div>
+
+
+
+        <div clas="col-md-10" id="graphs">
+            <div class="row" id="panel">
+                <div class="col-md-3"  id="teacherpanel">
+                    <div class="row" >
+                        <div class="col-md-4" >Teachers</div>
+                        <div class="col-md-7" style="text-align: right" th:text="${data1}" ></div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3" id="studentpanel" >
+                    <div class="row">
+                        <div class="col-md-4"  >Students</div>
+                        <div class="col-md-7" style="text-align: right" th:text="${data2}" ></div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3" id="coursepanel">
+                    <div class="row">
+                        <div class="col-md-4"  >Courses</div>
+                        <div class="col-md-7" style="text-align: right" th:text="${data3}"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3" id="employeepanel">
+                    <div class="row">
+                        <div class="col-md-4"  >Employees</div>
+                        <div class="col-md-7" style="text-align: right" th:text="${data4}"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row" id="first">
+                <div class="col-md-6" id="graph1">
+                    <div id="piechartContainer" style="height: 200px; width: 100%;"></div>
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                </div>
+
+                <div class="col-md-6" id="graph2">
+                    <div id="chartContainer" style="height: 200px; width: 100%;"></div>
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                </div>
+
+            </div>
+
+            <div class="row" id="second">
+                <div class="col-md-6" id="graph3">
+                    <div id="linearchartContainer" style="height: 200px; width: 100%;"></div>
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                </div>
+
+                <div class="col-md-6" id="graph4">
+                    <div id="doughnutchartContainer" style="height: 200px; width: 100%;"></div>
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <div class="row" id="footer">
+        <div class="col-md-12" style="background-color: darkseagreen;padding: 10px " align="center">
+            <a href="http://sscgj.in/" style="color: black">HOME</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=6" style="color: black">ABOUT US</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=64" style="color: black">INDUSTRY CONNECT</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=772" style="color: black">NATIONAL STANDARDS</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=12" style="color: black">AFFILIATIONS</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=14" style="color: black">PUBLICATIONS</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=16" style="color: black">STAGE LINKAGES  </a>
+        </div>
+
+
+        <div class="col-md-12" align="center" style="background-color: cadetblue;width: 100%;padding: 15px;">
+            Copyright � 2016 sscgj.in - All Rights Reserved.
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

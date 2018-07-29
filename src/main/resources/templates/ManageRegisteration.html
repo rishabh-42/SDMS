@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/ScgjDashboard.css" th:href="@{/ManageRegisteration.css}">
+    <link rel="stylesheet" href="../static/ManageRegisteration.css" th:href="@{/ScgjDashboard.css}">
+    <script src="../static/ManageRegisteration.js" th:src="@{/ManageRegisteration.js}"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <!--<script>-->
+        <!--$(document).ready(function(){-->
+            <!--$(".approvee").click(function(){-->
+                <!--var $item = $(this).parent().siblings('#appID').text();-->
+                <!--console.log($item);-->
+            <!--});-->
+        <!--});-->
+    <!--</script>-->
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row" id="header">
+        <div class="col-md-4" style="padding: 20px 20px 20px 0px">
+            <img src="img/SCGJLogo.png" width="100%">
+        </div>
+        <div class="col-md-5" style="padding: 40px 20px 20px 20px ">
+            <div class="row">
+                <div class="col-md-6" style="padding: 0px 0px 0px 0px">
+                    <div id="mycarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="img/t1.png">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="img/t2.png">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="img/t3.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding: 0px 0px 0px 0px" >
+                    <div id="carouselExampleSlidesOnly1" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="img/t2.png">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="img/t3.png">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="img/t1.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" style="padding: 20px 0px 20px 20px">
+            <div class="row" style="margin: 5px">
+                <div class="col-md-4"><img src="img/skill-india.png" width="100%"></div>
+                <div class="col-md-8"><img src="img/nsdc.png" width="100%"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+    <div class="row" id="maindashboard"  >
+        <div class="col-md-2" id="navbar">
+            <p><a href="html_images.asp" >Dashboard</a></p>
+            <p><a href="html_images.asp" >Manage Registeration</a></p>
+            <p><a href="html_images.asp" >Import</a></p>
+            <p><a href="html_images.asp" >FAQ</a></p>
+            <p><a href="html_images.asp" >Batch Assignment</a></p>
+            <p><a href="html_images.asp" >Placement Report</a></p>
+
+        </div>
+
+
+
+        <div clas="col-md-8" id="graphs">
+            <div class="row" id="table1">
+                <p>Approve/Reject Forms</p>
+                <table id="approve-reject">
+                    <tr class="nr">
+                        <th>Application ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                    <tr th:each="item:${data}">
+                        <td th:scope="row" th:text="${item.getId()}" id="appID"></td>
+                        <td th:text="${item.getInstitutionName()}"></td>
+                        <td th:text="${item.getInstitutionType()}"></td>
+                        <td th:text="${item.getDate()}"></td>
+                        <td th:text="${item.getLocation()}"></td>
+                        <td><form th:action="@{/approve}" id="form1" method="get">
+                            <input type="hidden" id="hidden" name="item" th:value="${item.getId()}">
+
+                            <button type="submit" form="form1" class="btn btn-primary active btn-sm btn-success approvee" id="add-row-approve">Approve</button>
+                            </form>
+                        </td>
+                        <td><form action="/reject" id="form2" method="get">
+                            <input type="hidden" id="hidden1" name="item" th:value="${item.getId()}">
+
+                            <button type="submit" form="form2" class="btn btn-primary disabled btn-sm btn-danger reject" id="add-row-reject" >Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div class="row" id="table2">
+                <p>Approved Forms</p>
+                <table id="approve">
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Location</th>
+
+                    </tr>
+                    <tr th:each="item1:${data1}">
+                        <td th:scope="row" th:text="${item1.getId()}"></td>
+                        <td th:text="${item1.getInstitutionName()}"></td>
+                        <td th:text="${item1.getInstitutionType()}"></td>
+                        <td th:text="${item1.getDate()}"></td>
+                        <td th:text="${item1.getLocation()}"></td>
+                    </tr>
+                </table>
+
+
+            </div>
+
+            <div class="row" id="table3">
+                <p>Rejected Forms</p>
+                <table id="reject">
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                    </tr>
+                    <tr th:each="item2:${data2}">
+                        <td th:scope="row" th:text="${item2.getId()}"></td>
+                        <td th:text="${item2.getInstitutionName()}"></td>
+                        <td th:text="${item2.getInstitutionType()}"></td>
+                        <td th:text="${item2.getDate()}"></td>
+                        <td th:text="${item2.getLocation()}"></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="row" id="footer">
+        <div class="col-md-12" style="background-color: darkseagreen;padding: 10px " align="center">
+            <a href="http://sscgj.in/" style="color: black">HOME</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=6" style="color: black">ABOUT US</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=64" style="color: black">INDUSTRY CONNECT</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=772" style="color: black">NATIONAL STANDARDS</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=12" style="color: black">AFFILIATIONS</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=14" style="color: black">PUBLICATIONS</a> &nbsp&nbsp|&nbsp&nbsp
+            <a href="http://sscgj.in/?page_id=16" style="color: black">STAGE LINKAGES  </a>
+        </div>
+
+
+        <div class="col-md-12" align="center" style="background-color: cadetblue;width: 100%;padding: 15px;">
+            Copyright � 2016 sscgj.in - All Rights Reserved.
+
+        </div>
+    </div>
+
+</div>
+
+<!--<form action="/approve" id="form1" method="get"></form>-->
+<!--<form action="/reject" id="form2" method="get"></form>-->
+
+
+
+</body>
+</html>

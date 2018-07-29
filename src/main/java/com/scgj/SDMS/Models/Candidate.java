@@ -1,187 +1,260 @@
 package com.scgj.SDMS.Models;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.Email;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "candidate")
 public class Candidate {
 
-    public  Candidate() {
-
-    }
-
     @Id
-    @Column(name = "cid")
-    private int cid;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "candidate_id")
+    private int candidateId;
 
+    @Column(name = "candidate_name")
+    private String candidateName;
 
-    @Column(name = "c_name")
-    private String c_name;
+    @Column(name = "enrollment_number")
+    private int enrollmentNumber;
 
-    @Column(name = "c_age")
-    private int c_age;
+    @Column(name = "gender")
+    private String gender;
 
-    @Column(name = "c_email")
-    private String c_email;
+    @Column(name = "date_of_birth")
+    private Date dateOfBirth;
 
-    @Column(name = "batch_id")
-    private int batch_id;
+    @Column(name = "mobile_number")
+    private int mobileNumber;
 
-    @Column(name = "c_gender")
-    private String c_gender;
+    @Column(name = "aadhar_number")
+    private int aadharNumber;
 
-    @Column(name = "c_qp_id")
-    private String c_qp_id;
+    @Email
+    @Column(name = "email")
+    private String candidateEmail;
 
-    @Column(name = "c_address")
-    private String c_address;
+    @Column(name = "education_level")
+    private int educationLevel;
 
-    @Column(name = "c_aadhar")
-    private long c_aadhar;
-    @Column(name = "is_placed")
-    private int is_placed;
+    @Column(name = "result")
+    private String result;
+
+    @Column(name = "certified")
+    private Boolean certified;
+
     @Column(name = "date_of_joining")
-    private String date_of_joining;
+    private Date dateOfJoining;
 
-    @Column(name = "c_father_name")
-    private String c_father_name;
+    @Column(name = "marks_theory")
+    private int marksTheory;
 
-    @Column(name = "c_education_level")
-    private String c_education_level;
+    @Column(name = "marks_practical")
+    private int marksPractical;
 
-    @Column(name = "c_phone_number")
-    private long c_phone_number;
+    @Column(name = "placement_status")
+    private String placementStatus;
 
-    @Column(name = "is_pass")
-    private int is_pass;
+    @Column(name = "employment_type")
+    private String employmentType;
 
-    @Column(name = "scheme")
-    private String scheme;
+    @Column(name = "name_of_father_husband")
+    private String nameOfFatherHusband;
 
-    public int getCid() {
-        return cid;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "batch_id")
+    private Batch batchId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employer_id")
+    private Employer employerId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "trainer_id")
+    private Trainer trainerId;
+
+    public int getCandidateId() {
+        return candidateId;
     }
 
-    public void setCid(int cid) {
-        this.cid = cid;
+    public void setCandidateId(int candidateId) {
+        this.candidateId = candidateId;
     }
 
-    public String getC_name() {
-        return c_name;
+    public String getCandidateName() {
+        return candidateName;
     }
 
-    public void setC_name(String c_name) {
-        this.c_name = c_name;
+    public void setCandidateName(String candidateName) {
+        this.candidateName = candidateName;
     }
 
-    public int getC_age() {
-        return c_age;
+    public int getEnrollmentNumber() {
+        return enrollmentNumber;
     }
 
-    public void setC_age(int c_age) {
-        this.c_age = c_age;
+    public void setEnrollmentNumber(int enrollmentNumber) {
+        this.enrollmentNumber = enrollmentNumber;
     }
 
-    public String getC_email() {
-        return c_email;
+    public String getGender() {
+        return gender;
     }
 
-    public void setC_email(String c_email) {
-        this.c_email = c_email;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public int getBatch_id() {
-        return batch_id;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setBatch_id(int batch_id) {
-        this.batch_id = batch_id;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getC_gender() {
-        return c_gender;
+    public int getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setC_gender(String c_gender) {
-        this.c_gender = c_gender;
+    public void setMobileNumber(int mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
-    public String getC_qp_id() {
-        return c_qp_id;
+    public int getAadharNumber() {
+        return aadharNumber;
     }
 
-    public void setC_qp_id(String c_qp_id) {
-        this.c_qp_id = c_qp_id;
+    public void setAadharNumber(int aadharNumber) {
+        this.aadharNumber = aadharNumber;
     }
 
-    public String getC_address() {
-        return c_address;
+    public String getCandidateEmail() {
+        return candidateEmail;
     }
 
-    public void setC_address(String c_address) {
-        this.c_address = c_address;
+    public void setCandidateEmail(String candidateEmail) {
+        this.candidateEmail = candidateEmail;
     }
 
-    public long getC_aadhar() {
-        return c_aadhar;
+    public int getEducationLevel() {
+        return educationLevel;
     }
 
-    public void setC_aadhar(long c_aadhar) {
-        this.c_aadhar = c_aadhar;
+    public void setEducationLevel(int educationLevel) {
+        this.educationLevel = educationLevel;
     }
 
-    public int getIs_placed() {
-        return is_placed;
+    public String getResult() {
+        return result;
     }
 
-    public void setIs_placed(int is_placed) {
-        this.is_placed = is_placed;
+    public void setResult(String result) {
+        this.result = result;
     }
 
-    public String getDate_of_joining() {
-        return date_of_joining;
+    public Boolean isCertified() {
+        return certified;
     }
 
-    public void setDate_of_joining(String date_of_joining) {
-        this.date_of_joining = date_of_joining;
+    public void setCertified(Boolean certified) {
+        this.certified = certified;
     }
 
-    public String getC_father_name() {
-        return c_father_name;
+    public Date getDateOfJoining() {
+        return dateOfJoining;
     }
 
-    public void setC_father_name(String c_father_name) {
-        this.c_father_name = c_father_name;
+    public void setDateOfJoining(Date dateOfJoining) {
+        this.dateOfJoining = dateOfJoining;
     }
 
-    public String getC_education_level() {
-        return c_education_level;
+    public int getMarksTheory() {
+        return marksTheory;
     }
 
-    public void setC_education_level(String c_education_level) {
-        this.c_education_level = c_education_level;
+    public void setMarksTheory(int marksTheory) {
+        this.marksTheory = marksTheory;
     }
 
-    public long getC_phone_number() {
-        return c_phone_number;
+    public int getMarksPractical() {
+        return marksPractical;
     }
 
-    public void setC_phone_number(long c_phone_number) {
-        this.c_phone_number = c_phone_number;
+    public void setMarksPractical(int marksPractical) {
+        this.marksPractical = marksPractical;
     }
 
-    public int getIs_pass() {
-        return is_pass;
+    public String getPlacementStatus() {
+        return placementStatus;
     }
 
-    public void setIs_pass(int is_pass) {
-        this.is_pass = is_pass;
+    public void setPlacementStatus(String placementStatus) {
+        this.placementStatus = placementStatus;
     }
 
-    public String getScheme() {
-        return scheme;
+    public String getEmploymentType() {
+        return employmentType;
     }
 
-    public void setScheme(String scheme) {
-        this.scheme = scheme;
+    public void setEmploymentType(String employmentType) {
+        this.employmentType = employmentType;
+    }
+
+    public String getNameOfFatherHusband() {
+        return nameOfFatherHusband;
+    }
+
+    public void setNameOfFatherHusband(String nameOfFatherHusband) {
+        this.nameOfFatherHusband = nameOfFatherHusband;
+    }
+
+    public Batch getBatchId() {
+        return batchId;
+    }
+
+    public void setBatchId(Batch batchId) {
+        this.batchId = batchId;
+    }
+
+    public Candidate(String candidateName, int enrollmentNumber, String gender, Date dateOfBirth, int mobileNumber, int aadharNumber, String candidateEmail, int educationLevel, String result, Boolean certified, Date dateOfJoining, int marksTheory, int marksPractical, String placementStatus, String employmentType, String nameOfFatherHusband, Batch batchId, Employer employerId, Trainer trainerId) {
+        this.candidateName = candidateName;
+        this.enrollmentNumber = enrollmentNumber;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.mobileNumber = mobileNumber;
+        this.aadharNumber = aadharNumber;
+        this.candidateEmail = candidateEmail;
+        this.educationLevel = educationLevel;
+        this.result = result;
+        this.certified = certified;
+        this.dateOfJoining = dateOfJoining;
+        this.marksTheory = marksTheory;
+        this.marksPractical = marksPractical;
+        this.placementStatus = placementStatus;
+        this.employmentType = employmentType;
+        this.nameOfFatherHusband = nameOfFatherHusband;
+        this.batchId = batchId;
+        this.employerId = employerId;
+        this.trainerId = trainerId;
+    }
+
+    public Employer getEmployerId() {
+        return employerId;
+    }
+
+    public void setEmployerId(Employer employerId) {
+        this.employerId = employerId;
+    }
+
+    public Trainer getTrainerId() {
+        return trainerId;
+    }
+
+    public void setTrainerId(Trainer trainerId) {
+        this.trainerId = trainerId;
     }
 }

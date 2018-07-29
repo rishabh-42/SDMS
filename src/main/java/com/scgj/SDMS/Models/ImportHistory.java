@@ -1,80 +1,29 @@
 package com.scgj.SDMS.Models;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "import_history")
 public class ImportHistory {
 
     @Id
-    @Column(name = "importNo")
-    private int importNo;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int importHistoryId;
 
-    @Column(name = "uploaderEmail")
-    private String uploaderEmail;
 
-    @Column(name = "type")
-    private String type;
-
-    @Column(name = "uploadDate")
-    private String uploadDate;
-
-    @Column(name = "file")
-    private String file;
-
-    @Column(name = "fileName")
+    @Column(name = "file_name")
     private String fileName;
 
-    public ImportHistory() {
-    }
+    @Column(name = "data_type")
+    private String dataType;
 
-    public ImportHistory(int importNo, String uploaderEmail, String type, String uploadDate, String file, String fileName) {
-        this.importNo = importNo;
-        this.uploaderEmail = uploaderEmail;
-        this.type = type;
-        this.uploadDate = uploadDate;
-        this.file = file;
-        this.fileName = fileName;
-    }
+    @Column(name = "date")
+    private Date date;
 
-    public int getImportNo() {
-        return importNo;
-    }
-
-    public void setImportNo(int importNo) {
-        this.importNo = importNo;
-    }
-
-    public String getUploaderEmail() {
-        return uploaderEmail;
-    }
-
-    public void setUploaderEmail(String uploaderEmail) {
-        this.uploaderEmail = uploaderEmail;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getUploadDate() {
-        return uploadDate;
-    }
-
-    public void setUploadDate(String uploadDate) {
-        this.uploadDate = uploadDate;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
+    @Column(name = "uploadedBy")
+    private String uploadedBy;
 
     public String getFileName() {
         return fileName;
@@ -82,5 +31,37 @@ public class ImportHistory {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getUploadedBy() {
+        return uploadedBy;
+    }
+
+    public void setUploadedBy(String uploadedBy) {
+        this.uploadedBy = uploadedBy;
+    }
+
+    public int getImportHistoryId() {
+        return importHistoryId;
+    }
+
+    public void setImportHistoryId(int importHistoryId) {
+        this.importHistoryId = importHistoryId;
     }
 }
